@@ -28,10 +28,16 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+
+  const addExpenseHandler = (expense) => {
+    console.log("in app.js");
+    console.log(expense);
+  };
+
   return (
     <div>
       {/* Gets users input, returns user's expense data */}
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       {/* Displays expense data in a list contained in a card */}
       <Expenses expenses={expenses} />
     </div>
