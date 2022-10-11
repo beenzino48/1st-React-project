@@ -4,11 +4,17 @@ import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
 
 const Expenses = (props) => {
+  // set the useState
   const [filteredYear, setFilteredYear] = useState("2020");
-
+  // create the function for the dropdown list of filtered years
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
+  // filteredExpenses is an array that takes props.item array, filters for dates
+  // returns expense.date === to the original state filteredYear
+  const filteredExpenses = props.items.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
   return (
     <div className="expenses">
       <ExpensesFilter
@@ -16,7 +22,7 @@ const Expenses = (props) => {
         onChangeFilter={filterChangeHandler}
       />
       {/* array off all my expenses */}
-      {props.items.map((expense) => (
+      {filteredExpenses.map((expense) => (
         <ExpenseItem
           key={expense.id}
           title={expense.title}

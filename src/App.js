@@ -30,8 +30,9 @@ const DUMMY_EXPENSES = [
 ];
 
 const App = () => {
+  // Set the useState so that you can add a new expense to the array of expenses
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
-
+  // create the function which changes the old state to the new useState
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
@@ -42,7 +43,7 @@ const App = () => {
     <div>
       {/* Gets users input, returns user's expense data */}
       <NewExpense onAddExpense={addExpenseHandler} />
-      {/* Displays expense data in a list contained in a card */}
+      {/* items(expenses) is the array of expenses created in expenses.js */}
       <Expenses items={expenses} />
     </div>
   );
