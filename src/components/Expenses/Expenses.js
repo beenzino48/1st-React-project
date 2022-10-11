@@ -17,19 +17,24 @@ const Expenses = (props) => {
   });
   return (
     <div className="expenses">
+      {/* the values from the dropdown is handled by ExpensesFilter */}
       <ExpensesFilter
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
-      {/* array off all my expenses */}
-      {filteredExpenses.map((expense) => (
-        <ExpenseItem
-          key={expense.id}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-        />
-      ))}
+      {/* if no expenses are found return <p> else return the array of expenses filtered to match the chosen year */}
+      {filteredExpenses.length === 0 ? (
+        <p>No expenses found</p>
+      ) : (
+        filteredExpenses.map((expense) => (
+          <ExpenseItem
+            key={expense.id}
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+          />
+        ))
+      )}
     </div>
   );
 };
