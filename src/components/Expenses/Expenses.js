@@ -15,6 +15,23 @@ const Expenses = (props) => {
   const filteredExpenses = props.items.filter((expense) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
+
+  let expenseContent = <p>No expenses found</p>;
+
+  {
+    /* if no expenses are found return <p> else return the array of expenses filtered to match the chosen year */
+  }
+  if (filteredExpenses.length > 0) {
+    expenseContent = filteredExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+  }
+
   return (
     <div className="expenses">
       {/* the values from the dropdown is handled by ExpensesFilter */}
@@ -22,19 +39,7 @@ const Expenses = (props) => {
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
-      {/* if no expenses are found return <p> else return the array of expenses filtered to match the chosen year */}
-      {filteredExpenses.length === 0 ? (
-        <p>No expenses found</p>
-      ) : (
-        filteredExpenses.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))
-      )}
+      {expenseContent}
     </div>
   );
 };
