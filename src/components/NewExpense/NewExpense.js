@@ -3,7 +3,7 @@ import React from "react";
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
 // This gets users input from ExpenseForm  title, amount and date
-const NewExpense = () => {
+const NewExpense = (props) => {
   // this function takes the expenseData object
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
@@ -12,8 +12,8 @@ const NewExpense = () => {
       // set a random ID
       id: Math.random().toString(),
     };
-    // allows the results to be seen in the console
-    console.log(expenseData);
+    // allows the result to be seen in app.js
+    props.onAddExpense(expenseData);
   };
   return (
     <div className="new-expense">
