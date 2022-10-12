@@ -39,6 +39,7 @@ const Expenses = (props) => {
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
+      {/* contains the list of all expenses filtered by the logic set above */}
       {expenseContent}
     </div>
   );
