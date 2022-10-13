@@ -24,7 +24,7 @@ const ExpenseForm = (props) => {
     // Change the state
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
     // This connects to NewExpense function in NewExpense.js with the above object expenseData
